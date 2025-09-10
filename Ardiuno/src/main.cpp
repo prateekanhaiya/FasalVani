@@ -1,14 +1,17 @@
 #include <Arduino.h>
 #include <soil_moisture.h>
+#include <soil_temp.h>
+#include <comms.h>
 
-void setup() {
+
+
+void setup(){
   initSoilMoisture();
-  Serial.begin(9600);
+  initSoilTemp();
+  initComms();
 }
 
-void loop() {
-  Serial.print("Mositure:");
-  Serial.print(getSoilMoisture());
-  Serial.println("%");
+void loop(){
+  sendData(getSoilMoisture(), getSoilTemp());
   delay(500);
 }
